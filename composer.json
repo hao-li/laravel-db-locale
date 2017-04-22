@@ -1,0 +1,16 @@
+{
+    "name": "hao-li/laravel-db-locale",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "HaoLi\\LaravelDbLocale\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hao li",
+            "email": "haoli.sand@gmail.com"
+        }
+    ]
+}
