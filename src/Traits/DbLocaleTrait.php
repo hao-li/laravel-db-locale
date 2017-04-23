@@ -4,6 +4,14 @@ namespace HaoLi\LaravelDbLocale\Traits;
 
 trait DbLocaleTrait
 {
+
+    public function getAttribute($key)
+    {
+        return (in_array($key, $this->getDbLocaleFields()))
+            ? $this->getDbLocaleColumnValue($key)
+            : parent::getAttribute($key);
+    }
+
     public function getMutatedAttributes()
     {
         $attributes = parent::getMutatedAttributes();
@@ -15,16 +23,6 @@ trait DbLocaleTrait
         return (in_array($key, $this->getDbLocaleFields()))
             ? $this->getDbLocaleColumnValue($key)
             : parent::mutateAttributeForArray($key, $value);
-    }
-
-    public function getAttributeValue($key)
-    {
-        $value = parent::getAttributeValue($key);
-        if (in_array($key, $this->getDbLocaleFields())) {
-            $this->getDbLocaleColumnValue($key);
-        }
-
-        return $value;
     }
 
     public function getDbLocaleFields()
