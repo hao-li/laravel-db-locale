@@ -1,5 +1,7 @@
 {
     "name": "hao-li/laravel-db-locale",
+    "keywords": ["laravel"],
+    "license": "MIT",
     "require": {
     },
     "autoload": {
