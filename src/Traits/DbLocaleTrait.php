@@ -39,10 +39,11 @@ trait DbLocaleTrait
     {
         $defaultColumn = self::getDbLocaleColumnName($key, config('app.locale'));
         $fallbackColumn = self::getDbLocaleColumnName($key, config('app.fallback_locale'));
-        if (array_key_exists($defaultColumn, $this->attributes)) {
-            $ret = $this->attributes[$defaultColumn];
-        } elseif (array_key_exists($fallbackColumn, $this->attributes)) {
-            $ret = $this->attributes[$fallbackColumn];
+
+        if (array_key_exists($defaultColumn, $this->attributes) || $this->hasGetMutator($defaultColumn)) {
+            $ret = $this->getAttributeValue($defaultColumn);
+        } elseif (array_key_exists($fallbackColumn, $this->attributes) || $this->hasGetMutator($fallbackColumn)) {
+            $ret = $this->getAttributeValue($fallbackColumn);
         } else {
             $ret = null;
         }
